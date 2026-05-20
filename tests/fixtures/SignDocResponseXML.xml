@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SignResp version="1.0" status="1" respCode="000" txn="test-transaction-id" sipId="UAT-GOV-TCC01">
+    <docSignature id="1">UEFKb3NkZmRzdGVzdA==</docSignature>
+    <X509Certificate>dGVzdGNlcnQ=</X509Certificate>
+</SignResp>

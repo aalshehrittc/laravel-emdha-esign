@@ -1,0 +1,42 @@
+{
+    "eaServiceInit": {
+        "licenseFilePath": "UAT-GOV-TCC01_JAVA.lics",
+        "pfxFilePath": "ClientSDKDEV.pfx",
+        "pfxPassword": "emdha",
+        "pfxAlias": "fin",
+        "sipId": "UAT-GOV-TCC01",
+        "contentEstimated": 40000
+    },
+    "signerInfo": {
+        "rkaName": "UAT-GOV-TCC01",
+        "kycId": "2515534888",
+        "englishName": "Signer English Name",
+        "arabicName": "اسم التوقيع العربي",
+        "mobile": "556654362",
+        "email": "abc@testmail.com",
+        "address": "Signer Address",
+        "regionProvince": "Riyadh Province",
+        "country": "SA"
+    },
+    "docInputs": [
+        {
+            "docBase64": "JVBERi0xLjQ=",
+            "signedBy": "Signer English Name",
+            "reason": "Document Signing",
+            "location": "Saudi Arabia",
+            "appearanceContent": "",
+            "fontSize": 7,
+            "appearanceRunDirection": "ltr",
+            "appearanceBackgroundImage": "",
+            "signatureAppearanceType": "emdhaLogo",
+            "signatureImagePosition": "leftOfText",
+            "coSign": true,
+            "pageTobeSigned": "all",
+            "coordinates": "bottomRight"
+        }
+    ],
+    "tempFolderPath": "/tmp/emdha",
+    "transactionId": "c24be12848f64b06aeafe231e033d6c9",
+    "userConsent": true,
+    "kycIdProvider": "nid"
+}
