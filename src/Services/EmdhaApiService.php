@@ -9,11 +9,13 @@ class EmdhaApiService
 {
     private string $baseUrl;
     private int $timeout;
+    private string $apiKey;
 
     public function __construct(array $config)
     {
         $this->baseUrl = $config['base_url'] ?? 'https://esign-dev.emdha.sa/eSign/SignDoc';
         $this->timeout = $config['timeout'] ?? 120;
+        $this->apiKey = (string) config('emdha.api_key');
     }
 
     public function sendSignDocRequest(string $requestXmlBase64): array
@@ -35,6 +37,7 @@ class EmdhaApiService
 
         try {
             $response = Http::withHeaders([
+                    'Authorization' => $this->apiKey,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Accept' => '*/*',
                 ])

@@ -2,6 +2,7 @@
 
 return [
     'base_url' => env('EMDHA_BASE_URL', 'https://esign-dev.emdha.sa/eSign/SignDoc'),
+    'api_key' => env('EMDHA_API_KEY', ''),
     'sip_id' => env('EMDHA_SIP_ID', ''),
     'license_path' => env('EMDHA_LICENSE_PATH', ''),
     'pfx_path' => env('EMDHA_PFX_PATH', ''),

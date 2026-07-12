@@ -85,7 +85,7 @@ class EmdhaSdkService
         file_put_contents($inputFile, $jsonInput);
 
         if (!empty($this->classpath) && file_exists($this->classpath)) {
-            $command = ['java', '-cp', $this->classpath, 'com.emdha.cli.Main', '-m', $method, '-i', $inputFile, '-o', $outputFile];
+            $command = ['java', '-cp', $this->classpath, 'com.emdha.cli.CLI', '-m', $method, '-i', $inputFile, '-o', $outputFile];
         } else {
             $command = ['java', '-jar', $this->jarPath, '-m', $method, '-i', $inputFile, '-o', $outputFile];
         }
