@@ -15,6 +15,8 @@ class DocOptions
         public readonly string $appearanceRunDirection = 'ltr',
         public readonly string $appearanceBackgroundImage = '',
         public readonly string $signatureImagePosition = 'leftOfText',
+        /** Null falls back to SignerInfo englishName; '' blanks appearance for GRAPHIC mode. */
+        public readonly ?string $signedBy = null,
         public readonly bool $coSign = true,
     ) {}
 
@@ -31,6 +33,7 @@ class DocOptions
             'appearanceRunDirection' => $this->appearanceRunDirection,
             'appearanceBackgroundImage' => $this->appearanceBackgroundImage,
             'signatureImagePosition' => $this->signatureImagePosition,
+            'signedBy' => $this->signedBy,
             'coSign' => $this->coSign,
         ];
     }
@@ -48,6 +51,7 @@ class DocOptions
             appearanceRunDirection: $data['appearanceRunDirection'] ?? 'ltr',
             appearanceBackgroundImage: $data['appearanceBackgroundImage'] ?? $data['appearance_background_image'] ?? '',
             signatureImagePosition: $data['signatureImagePosition'] ?? 'leftOfText',
+            signedBy: array_key_exists('signedBy', $data) ? $data['signedBy'] : ($data['signed_by'] ?? null),
             coSign: (bool) ($data['coSign'] ?? true),
         );
     }
