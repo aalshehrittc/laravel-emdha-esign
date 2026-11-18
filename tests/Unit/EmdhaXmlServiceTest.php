@@ -79,6 +79,44 @@ test('buildSdkInputJson uses config defaults when docOptions empty', function ()
     expect($result['docInputs'][0]['reason'])->toBe('Document Signing');
     expect($result['docInputs'][0]['location'])->toBe('Saudi Arabia');
     expect($result['docInputs'][0]['signatureAppearanceType'])->toBe('emdhaLogo');
+    expect($result['docInputs'][0]['signedBy'])->toBe('Test');
+});
+
+test('buildSdkInputJson uses empty signedBy for graphics-only appearance', function () {
+    $config = [
+        'license_path' => '/path/to/license.lics',
+        'pfx_path' => '/path/to/cert.pfx',
+        'pfx_password' => 'password',
+        'pfx_alias' => 'fin',
+        'sip_id' => 'UAT-GOV-TCC01',
+        'content_estimated' => 40000,
+        'sip_is_rka' => true,
+        'kyc_id_provider' => 'nid',
+        'temp_path' => '/tmp/emdha',
+    ];
+
+    $service = new EmdhaXmlService($config);
+
+    $result = $service->buildSdkInputJson(
+        docBase64: 'JVBERi0xLjQ=',
+        signerInfo: ['kycId' => '123', 'englishName' => 'Ahmed Al-Rashid', 'email' => 't@t.com'],
+        transactionId: 'tx-graphic',
+        docOptions: [
+            'reason' => '',
+            'location' => '',
+            'appearanceContent' => '',
+            'signedBy' => '',
+            'signatureAppearanceType' => 'customLogo',
+            'appearanceBackgroundImage' => 'base64imagedata',
+        ],
+    );
+
+    expect($result['signerInfo']['englishName'])->toBe('Ahmed Al-Rashid')
+        ->and($result['docInputs'][0]['signedBy'])->toBe('')
+        ->and($result['docInputs'][0]['reason'])->toBe('')
+        ->and($result['docInputs'][0]['location'])->toBe('')
+        ->and($result['docInputs'][0]['appearanceContent'])->toBe('')
+        ->and($result['docInputs'][0]['signatureAppearanceType'])->toBe('customLogo');
 });
 
 test('buildMultiDocInputJson creates multiple docInputs', function () {

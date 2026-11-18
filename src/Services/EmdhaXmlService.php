@@ -28,7 +28,8 @@ class EmdhaXmlService
 
         $docInput = [
             'docBase64' => $docBase64,
-            'signedBy' => $signerInfo['englishName'] ?? '',
+            // Empty string keeps graphics-only appearance; null/missing falls back to englishName.
+            'signedBy' => $docOptions['signedBy'] ?? $signerInfo['englishName'] ?? '',
             'reason' => $docOptions['reason'] ?? 'Document Signing',
             'location' => $docOptions['location'] ?? 'Saudi Arabia',
             'appearanceContent' => $docOptions['appearanceContent'] ?? '',

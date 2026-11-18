@@ -73,6 +73,7 @@ test('DocOptions toArray returns all fields', function () {
         location: 'Riyadh',
         signatureAppearanceType: 'customLogo',
         appearanceBackgroundImage: 'base64imagedata',
+        signedBy: '',
     );
 
     $arr = $opts->toArray();
@@ -80,16 +81,26 @@ test('DocOptions toArray returns all fields', function () {
     expect($arr['reason'])->toBe('Test');
     expect($arr['signatureAppearanceType'])->toBe('customLogo');
     expect($arr['appearanceBackgroundImage'])->toBe('base64imagedata');
+    expect($arr['signedBy'])->toBe('');
 });
 
 test('DocOptions fromArray accepts snake_case keys', function () {
     $opts = DocOptions::fromArray([
         'appearance_type' => 'noImage',
         'page_to_be_signed' => 'Last',
+        'signed_by' => '',
     ]);
 
     expect($opts->signatureAppearanceType)->toBe('noImage');
     expect($opts->pageTobeSigned)->toBe('Last');
+    expect($opts->signedBy)->toBe('');
+});
+
+test('DocOptions signedBy defaults to null for englishName fallback', function () {
+    $opts = new DocOptions();
+
+    expect($opts->signedBy)->toBeNull()
+        ->and($opts->toArray()['signedBy'])->toBeNull();
 });
 
 test('EmdhaSigningResult success has signedPdfBase64', function () {
